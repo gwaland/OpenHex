@@ -1,4 +1,4 @@
-
+mapscaleLevel = 26
 
 //hexagon blatantly borrowed from
 //http://svn.clifford.at/openscad/trunk/libraries/shapes.scad
@@ -8,21 +8,21 @@ module hexagon(size, height) {
   for (r = [-60, 0, 60]) rotate([0,0,r]) cube([boxWidth, size, height], true);
 }
 
-//Make a single hex tile.  1 leve = 5mm per battletech levels.
+//Make a single hex tile. 
 module hex_tile(level)
 {
-    translate([0,0,(level*5-1i)/2])
+    translate([0,0,(level*mapscaleLevel-1)/2])
     {    
         difference()
         {
             union()
             {
-                hexagon(32, (level*5-1) );
+                hexagon(32, (level*mapscaleLevel-1) );
                 translate([0,0,1])
-                    hexagon(30, (level*5));
+                    hexagon(30, (level*mapscaleLevel));
             }
             translate([0,0,-2])
-                hexagon(31, ((level*5)-3));
+                hexagon(31, ((level*mapscaleLevel)-3));
         }
     }
 }
