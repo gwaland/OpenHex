@@ -1,4 +1,4 @@
-mapscaleLevel = 26
+mapscaleLevel = 20;
 
 //hexagon blatantly borrowed from
 //http://svn.clifford.at/openscad/trunk/libraries/shapes.scad
