@@ -109,5 +109,16 @@ module 24_hex_tile(level1,hill=0)
     translate([4*(2*HexSize/sqrt(3))*.75,3*HexSize,0])road_hex_tile(3,level1+hill,hill);
     translate([5*(2*HexSize/sqrt(3))*.75,3*HexSize+HexSize/2,0])road_hex_tile(2,level1+hill,hill);
 }
+module map(x,y)
+{
+        for(map_x=[0:1:x])
+        {
+            if(map_x%2==0)
+                translate([map_x*(2*HexSize/sqrt(3))*.75,HexSize/2,0])road_hex_tile(y);
+            else
+                translate([map_x*(2*HexSize/sqrt(3))*.75,0,0])road_hex_tile(y);
+            
+        }
+}
 
-24_hex_tile(1,2);
+map(15,17);
