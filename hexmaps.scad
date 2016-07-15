@@ -91,7 +91,23 @@ module oct_hex_tile(level1,level2=0,level3=0,level4=0,level5=0,level6=0,level7=0
        translate([-(2*HexSize/sqrt(3))*.75,-HexSize/2,0])hex_tile(level8); 
  
 }
+//make a row of hex tiles of <length> set to a specific height increasing by height to make a hill. 
+module road_hex_tile(length,level1, hill=0)
+{ 
+   for(y = [0:length-1])
+   {
+       translate([0,HexSize*y,0])hex_tile((y*hill)+level1);
+   }
+}
 
-oct_hex_tile(1);
+module 24_hex_tile(level1,hill=0)
+{
+    road_hex_tile(6,level1,hill);
+    translate([(2*HexSize/sqrt(3))*.75,HexSize/2,0])road_hex_tile(5,level1,hill);
+    translate([2*(2*HexSize/sqrt(3))*.75,HexSize,0])road_hex_tile(5,level1,hill);
+    translate([3*(2*HexSize/sqrt(3))*.75,2*HexSize+HexSize/2,0])road_hex_tile(3,level1+hill,hill);
+    translate([4*(2*HexSize/sqrt(3))*.75,3*HexSize,0])road_hex_tile(3,level1+hill,hill);
+    translate([5*(2*HexSize/sqrt(3))*.75,3*HexSize+HexSize/2,0])road_hex_tile(2,level1+hill,hill);
+}
 
-
+24_hex_tile(1,2);
